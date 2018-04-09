@@ -1,0 +1,6 @@
+<include>
+  <context name="redirect">
+
+   <X-PRE-PROCESS cmd="include" data="redirect/*.xml"/>
+  </context>
+</include>

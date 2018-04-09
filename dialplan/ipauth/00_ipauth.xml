@@ -1,0 +1,28 @@
+<include>
+    <extension name="Auth Calls">
+        <condition field="${cisco_service_info}" expression="^200$" break="never">
+          <action application="set" data="execute_on_answer=sched_hangup +${credit_time} alloted_timeout" />
+          <action application="set" data="process_cdr=false"/>
+          <action application="set" data="call-origin=inbound"/>
+          <action application="bridge" data="{sip_invite_call_id=${Core-UUID},sip_invite_from_uri=sip:${caller_id_number}@${sip_network_ip}}sofia/external/${destination_number}@${sipredirect}:5060" />
+          <action application="set" data="sip_ignore_remote_cause=true"/>
+          <action application="hangup" data="UNALLOCATED_NUMBER"/>
+	</condition>
+
+	<condition field="${cisco_service_info}" expression="^101$" break="on-true">
+	  <action application="log" data="ALERT  Not Authorised ${network_addr}"/>
+	  <action application="hangup" data="CALL_REJECTED"/>
+	</condition>
+
+        <condition field="${cisco_service_info}" expression="^221$" break="on-true">
+          <action application="log" data="INFO  Insufficient Funds"/>
+          <action application="hangup" data="CALL_REJECTED"/>
+        </condition>
+
+        <condition field="${cisco_service_info}" expression="^201$" break="on-true">
+          <action application="log" data="INFO  No Rate"/>
+          <action application="hangup" data="UNALLOCATED_NUMBER"/>
+        </condition>
+
+    </extension>
+</include>

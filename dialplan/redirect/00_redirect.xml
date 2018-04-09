@@ -1,0 +1,70 @@
+<include>
+    <extension name="Redirect Calls">
+
+       <condition field="${sip_redirect_contact_0}" expression="src_number=(.+)\;(.+)$" break="never">
+            <action application="set" data="effective_caller_id_name=$1"/>
+            <action application="set" data="effective_caller_id_number=$1"/>
+	    <anti-action application="set" data="effective_caller_id_number=${sip_from_user}"/>
+        </condition>
+
+       <condition field="${sofia_contact(${sip_redirect_contact_host_0})}" expression="error(.+)$" break="on-false">
+	    <anti-action application="log" data="ALERT User Regsitered"/>
+            <anti-action application="set" data="coreuuid=${Core-UUID}"/>
+            <anti-action application="export" data="coreuuid=${Core-UUID}"/>
+	    <anti-action application="export" data="destnum=${sip_to_user}"/>
+            <anti-action application="set" data="process_cdr=true"/>
+	    <anti-action application="export" data="touser=${sip_redirect_contact_host_0}"/>
+	    <anti-action application="bridge" data="{accountcode=jerasoftterm,call-origin=outbound,sip_invite_to_uri=sip:${sip_to_user}@${sip_redirect_contact_host_0}}sofia/internal/${sip_redirect_contact_host_0}%"/>
+	</condition>
+ 
+        <condition field="${sip_redirect_contact_0}" expression="^<(.+)\>(.+)$">
+            <action application="export" data="touser=${sip_redirect_contact_host_0}"/>
+            <action application="set" data="coreuuid=${Core-UUID}"/>
+	    <action application="export" data="coreuuid=${Core-UUID}"/>
+            <action application="set" data="process_cdr=true"/>
+            <action application="bridge" data="{accountcode=jerasoftterm,call-origin=outbound,sip_invite_from_uri=sip:${effective_caller_id_number}@${sip_network_ip}}sofia/external/$1" />
+	</condition>
+
+       <condition field="${sip_redirect_contact_1}" expression="src_number=(.+)\;(.+)$" break="never">
+            <action application="set" data="effective_caller_id_name=$1"/>
+            <action application="set" data="effective_caller_id_number=$1"/>
+            <anti-action application="set" data="effective_caller_id_number=${sip_from_user}"/>
+        </condition>
+
+        <condition field="${sip_redirect_contact_1}" expression="^<(.+)\>(.+)$">
+            <action application="set" data="process_cdr=true"/>
+            <action application="export" data="coreuuid=${Core-UUID}"/>
+            <action application="export" data="touser=${sip_redirect_contact_host_1}"/>
+            <action application="bridge" data="{accountcode=jerasoftterm,call-origin=outbound,sip_invite_from_uri=sip:${effective_caller_id_number}@${sip_network_ip}}sofia/external/$1" />
+        </condition>
+
+       <condition field="${sip_redirect_contact_2}" expression="src_number=(.+)\;(.+)$" break="never">
+            <action application="set" data="effective_caller_id_name=$1"/>
+            <action application="set" data="effective_caller_id_number=$1"/>
+            <anti-action application="set" data="effective_caller_id_number=${sip_from_user}"/>
+        </condition>
+
+        <condition field="${sip_redirect_contact_2}" expression="^<(.+)\>(.+)$">
+            <action application="set" data="process_cdr=true"/>
+            <action application="export" data="coreuuid=${Core-UUID}"/>
+            <action application="export" data="touser=${sip_redirect_contact_host_2}"/>
+            <action application="bridge" data="{accountcode=jerasoftterm,call-origin=outbound,sip_invite_from_uri=sip:${effective_caller_id_number}@${sip_network_ip}}sofia/external/$1" />
+        </condition>
+
+       <condition field="${sip_redirect_contact_3}" expression="src_number=(.+)\;(.+)$" break="never">
+            <action application="set" data="effective_caller_id_name=$1"/>
+            <action application="set" data="effective_caller_id_number=$1"/>
+            <anti-action application="set" data="effective_caller_id_number=${sip_from_user}"/>
+        </condition>
+
+        <condition field="${sip_redirect_contact_3}" expression="^<(.+)\>(.+)$">
+            <action application="set" data="process_cdr=true"/>
+            <action application="export" data="coreuuid=${Core-UUID}"/>
+            <action application="export" data="touser=${sip_redirect_contact_host_3}"/>
+            <action application="bridge" data="{accountcode=jerasoftterm,call-origin=outbound,sip_invite_from_uri=sip:${effective_caller_id_number}@${sip_network_ip}}sofia/external/$1" />
+        </condition>
+
+            <action application="hangup" data="${bridge_hangup_cause}"/>
+
+    </extension>
+</include>

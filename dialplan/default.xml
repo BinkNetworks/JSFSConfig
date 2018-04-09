@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<include>
+    <context name="default">
+        <X-PRE-PROCESS cmd="include" data="default/*.xml"/>
+    </context>
+    <context name="redirected">
+        <extension name="handle_redirect">
+            <condition field="${sip_redirect_dialstring}" expression="^(.+)$">
+                <action application="log" data="INFO handling redirect to ${sip_redirect_dialstring}" inline="true"/>
+                <action application="bridge" data="${sip_redirect_dialstring}"/>
+            </condition>
+        </extension>
+    </context>
+</include>

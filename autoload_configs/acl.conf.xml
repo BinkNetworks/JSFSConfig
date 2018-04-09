@@ -1,0 +1,16 @@
+<configuration name="acl.conf" description="Network Lists">
+  <network-lists>
+    <!--
+	This will traverse the directory adding all users 
+	with the cidr= tag to this ACL, when this ACL matches
+	the users variables and params apply as if they 
+	digest authenticated.
+    -->
+      <!-- domain= is special it scans the domain from the directory to build the ACL 
+    <list name="domains" default="deny">
+      <node type="allow" cidr="1.2.3.4/32" />
+      <node type="allow" domain="$${domain}"/>
+    </list>-->
+  </network-lists>
+</configuration>
+

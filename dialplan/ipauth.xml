@@ -1,0 +1,6 @@
+<include>
+  <context name="ipauth">
+
+   <X-PRE-PROCESS cmd="include" data="ipauth/*.xml"/>
+  </context>
+</include>

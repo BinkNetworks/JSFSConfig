@@ -1,0 +1,41 @@
+<configuration name="rad_auth.conf" description="radius authentification module">
+ <settings>
+    <!-- backward compatibility to allow radiusclient config file instead of an embedded config -->
+    <!--  <param name="radius_config" value="/usr/local/etc/radiusclient/radiusclient.conf"/>   -->
+ </settings>
+ 
+ <client>
+   <param name="authserver" value="$${radiusauth}"/>
+   <param name="dictionary" value="/usr/local/freeswitch/conf/dictionaries/dictionary"/>
+   <param name="seqfile" value="/var/run/radius.seq"/>
+   <param name="mapfile" value="/usr/local/etc/radiusclient/port-id-map"/>
+   <param name="default_realm" value=""/>
+   <param name="radius_timeout" value="3"/>
+   <param name="radius_retries" value="2"/>
+   <param name="radius_deadtime" value="0"/>
+   <param name="bindaddr" value="*"/>
+ </client>
+ 
+ <vsas>
+   <!-- 
+        name:       just a description
+        value:      direct input or variable 
+        pec:        vendor ID (0 for default, 9 for cisco...)
+        expr:       0 - direct input (string), 1 - channel variable
+        direction:  in for radius-request, out for radius-response
+   -->
+ 
+   <!-- mappings for radius request message; input attributes -->
+   <param name="h323-conf-id" id="24" value="CALLID" pec="9" expr="1" direction="in"/>
+   <param name="Cisco-AVPair" id="1" value="SRCGWIP" pec="9" expr="1" direction="in"/>
+   <param name="Cisco-AVPair" id="1" value="SRCGWNAME" pec="9" expr="1" direction="in"/>
+   <param name="Cisco-AVPair" id="1" value="request-type=number" pec="9" expr="0" direction="in"/>
+   <param name="Calling-Station-Id" id="31" value="CALLINGNUMBER" pec="0" expr="1" direction="in"/>
+   <param name="Called-Station-Id" id="30" value="CALLEDNUMBER" pec="0" expr="1" direction="in"/> 
+   <!-- mappings for radius-response message; output values from returning outributes -->
+   <param name="CREDIT_TIME" id="102" value="credit_time" pec="9" expr="0" direction="out"/>
+   <param name="CISCO_SERVICE_INFO" id="251" value="cisco_service_info" pec="9" expr="0" direction="out"/>
+   <param name="RADIUS_RETURN_CODE" id="103" value="return_code" pec="9" expr="0" direction="out"/>
+   <!-- expr param is to be ignored here-->
+ </vsas>
+</configuration>

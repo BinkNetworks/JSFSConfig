@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<include>
+    <extension name="Local Extension">
+        <condition field="destination_number" expression="^(\d{4})$">
+            <!--<action application="info"/>-->
+            <action application="export" data="dialed_extension=$1"/>
+            <action application="export" data="nolocal:h323-call-origin=originate"/>
+            <action application="set" data="call_timeout=30"/>
+            <action application="set" data="hangup_after_bridge=true"/>
+            <action application="set" data="continue_on_fail=true"/>
+            <action application="set" data="execute_on_answer=sched_hangup +${h323-credit-time} alloted_timeout" />
+            <action application="bridge" data="user/${dialed_extension}@${domain_name}"/>
+        </condition>
+    </extension>
+</include>

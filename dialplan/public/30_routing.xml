@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<include>
+    <extension name="JeraSoft VCS Routing">
+        <!--
+        <condition field="${radius_auth_result}" expression="0"/>
+
+        <condition field="${h323-redirect-number}" expression="^(.+)$" break="never">
+            <action application="set" data="destination_number=$1" />
+        </condition>
+        -->
+        
+        <condition field="destination_number" expression="^(.+)$">
+            <!--<action application="info"/>-->
+	    <action application="set" data="Core-UUID=${uuid}"/>
+            <action application="set" data="process_cdr=false"/>
+            <action application="export" data="nolocal:h323-call-origin=originate"/>
+            <action application="set" data="sip_h_X-accountcode=${accountcode}" />
+            <action application="set" data="call_direction=outbound" />
+            <action application="set" data="hangup_after_bridge=true"/>
+            <action application="set" data="continue_on_fail=true"/>
+            <action application="set" data="inherit_codec=true" />
+            <action application="set" data="call_timeout=20"/>
+            <action application="set" data="fail_on_single_reject=USER_BUSY" />
+            <action application="set" data="origination_caller_id_name=${sip_req_user}"/>
+            <action application="set" data="origination_caller_id_number=${sip_from_user}"/>
+
+<!-- Start mod_rad_auth Radius authentication -->
+	 <action inline="true" application="set" data="SRCGWIP=src-gw-ip=${network_addr}"/>
+	 <action inline="true" application="set" data="CALLID=h323-conf-id=${uuid}"/>
+	<action inline="true" application="set" data="CALLINGNUMBER=${caller_id_number}"/>
+        <action inline="true" application="set" data="CALLEDNUMBER=${destination_number}"/>
+	<action application="auth_function" data="in ${DIALED_NUMBER}, in ${USERNAME}, in ${PASSWD}, out AUTH_RESULT"/>
+
+	    <action application="export" data="credit_time=${credit_time}"/>
+            <action application="export" data="cisco_service_info=${cisco_service_info"/>
+	    <action application="export" data="sip_redirect_context=redirect"/>
+	    <action application="transfer" data="$1 XML ipauth"/>
+            <action application="hangup" data="${bridge_hangup_cause}"/>
+        </condition>
+    </extension>
+</include>
