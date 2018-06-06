@@ -12,7 +12,7 @@
     <param name="master-file-only" value="true"/> 
   </settings>
   <templates>
-    <template name="jerasoft">"${coreuuid}","${uuid}","${network_addr}","${sip_to_host}","${sip_auth_username}","${caller_id_number}","${destination_number}","${sip_to_uri}","${start_stamp}","${answer_stamp}","${end_stamp}","${billsec}","${hangup_cause}","${progresssec}","${read_codec}","${write_codec}","${call-origin}","${touser}"</template>
+    <template name="jerasoft">"${billuuid}","${uuid}","${network_addr}","${sip_to_host}","${sip_auth_username}","${caller_id_number}","${destination_number}","${sip_to_uri}","${start_stamp}","${answer_stamp}","${end_stamp}","${billsec}","${hangup_cause}","${progresssec}","${read_codec}","${write_codec}","${call-origin}","${touser}"</template>
   </templates>
 </configuration>
 
