@@ -11,7 +11,7 @@
     <fields>
       <param vendor="Cisco" name="Cisco-AVPair" variable="ip" format="src-gw-ip=%s"/>
       <param vendor="Cisco" name="Cisco-AVPair" variable="sip_from_user" format="src-gw-name=%s"/>
-      <param vendor="Cisco" name="h323-conf-id" variable="Core-UUID" format="%s"/>
+      <param vendor="Cisco" name="h323-conf-id" variable="billuuid" format="%s"/>
       <param vendor="Cisco" name="Cisco-AVPair" variable="ip" format="request-type=number"/>
       <param name="Called-Station-Id" variable="sip_to_user" format="%s"/>
       <param name="Calling-Station-Id" variable="sip_from_user" format="%s"/>
@@ -85,7 +85,7 @@
     </connection>
     <fields>
       <param vendor="Cisco" name="h323-call-origin" variable="h323-call-origin" default="answer" format="%s"/>
-      <param vendor="Cisco" name="h323-conf-id" variable_secondary="coreuuid" variable="Core-UUID" format="%s"/>
+      <param vendor="Cisco" name="h323-conf-id" variable_secondary="coreuuid" variable="billuuid" format="%s"/>
       <param vendor="Cisco" name="Cisco-AVPair" variable="uuid" format="h323-call-id=%s"/>
       
       <param vendor="Cisco" name="Cisco-AVPair" variable="sip_contact_host" format="src-gw-ip=%s"/>
@@ -119,7 +119,7 @@
     </connection>
     <fields>
       <param vendor="Cisco" name="h323-call-origin" variable="h323-call-origin" default="answer" format="%s"/>
-      <param vendor="Cisco" name="h323-conf-id" variable_secondary="coreuuid" variable="Core-UUID" format="%s"/>
+      <param vendor="Cisco" name="h323-conf-id" variable_secondary="coreuuid" variable="billuuid" format="%s"/>
       <param vendor="Cisco" name="Cisco-AVPair" variable="uuid" format="h323-call-id=%s"/>
       
       <param vendor="Cisco" name="Cisco-AVPair" variable="sip_contact_host" format="src-gw-ip=%s"/>
