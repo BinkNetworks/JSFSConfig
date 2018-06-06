@@ -10,6 +10,7 @@
         
         <condition field="destination_number" expression="^(.+)$">
             <!--<action application="info"/>-->
+            <action application="set" data="billuuid=${uuid}"/>
             <action application="export" data="nolocal:h323-call-origin=originate"/>
             <action application="set" data="sip_h_X-accountcode=${accountcode}" />
             <action application="set" data="call_direction=outbound" />
@@ -25,7 +26,7 @@
             <action application="export" data="sip_redirect_context=redirect"/>
             <action application="set" data="process_cdr=false"/>
             <action application="set" data="call-origin=inbound"/>
-            <action application="bridge" data="{sip_invite_call_id=${Core-UUID},sip_invite_from_uri=sip:${caller_id_number}@${sip_auth_username}}sofia/external/${destination_number}@${sipredirect}:5060" />
+            <action application="bridge" data="{sip_invite_call_id=${billuuid},sip_invite_from_uri=sip:${caller_id_number}@${sip_auth_username}}sofia/external/${destination_number}@${sipredirect}:5060" />
           <action application="set" data="sip_ignore_remote_cause=true"/>
           <action application="hangup" data="UNALLOCATED_NUMBER"/>
         </condition>
