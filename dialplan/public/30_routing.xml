@@ -11,7 +11,7 @@
         
         <condition field="destination_number" expression="^(.+)$">
             <!--<action application="info"/>-->
-	    <action application="set" data="Core-UUID=${uuid}"/>
+	    <action application="set" data="billuuid=${uuid}"/>
             <action application="set" data="process_cdr=false"/>
             <action application="export" data="nolocal:h323-call-origin=originate"/>
             <action application="set" data="sip_h_X-accountcode=${accountcode}" />
