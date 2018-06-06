@@ -9,8 +9,8 @@
 
        <condition field="${sofia_contact(${sip_redirect_contact_host_0})}" expression="error(.+)$" break="on-false">
 	    <anti-action application="log" data="ALERT User Regsitered"/>
-            <anti-action application="set" data="coreuuid=${Core-UUID}"/>
-            <anti-action application="export" data="coreuuid=${Core-UUID}"/>
+            <anti-action application="set" data="billuuid=${billuuid}"/>
+            <anti-action application="export" data="billuuid=${billuuid}"/>
 	    <anti-action application="export" data="destnum=${sip_to_user}"/>
             <anti-action application="set" data="process_cdr=true"/>
 	    <anti-action application="export" data="touser=${sip_redirect_contact_host_0}"/>
@@ -19,8 +19,8 @@
  
         <condition field="${sip_redirect_contact_0}" expression="^<(.+)\>(.+)$">
             <action application="export" data="touser=${sip_redirect_contact_host_0}"/>
-            <action application="set" data="coreuuid=${Core-UUID}"/>
-	    <action application="export" data="coreuuid=${Core-UUID}"/>
+            <action application="set" data="billuuid=${billuuid}"/>
+	    <action application="export" data="billuuid=${billuuid}"/>
             <action application="set" data="process_cdr=true"/>
             <action application="bridge" data="{accountcode=jerasoftterm,call-origin=outbound,sip_invite_from_uri=sip:${effective_caller_id_number}@${sip_network_ip}}sofia/external/$1" />
 	</condition>
@@ -33,7 +33,7 @@
 
         <condition field="${sip_redirect_contact_1}" expression="^<(.+)\>(.+)$">
             <action application="set" data="process_cdr=true"/>
-            <action application="export" data="coreuuid=${Core-UUID}"/>
+            <action application="export" data="billuuid=${billuuid}"/>
             <action application="export" data="touser=${sip_redirect_contact_host_1}"/>
             <action application="bridge" data="{accountcode=jerasoftterm,call-origin=outbound,sip_invite_from_uri=sip:${effective_caller_id_number}@${sip_network_ip}}sofia/external/$1" />
         </condition>
@@ -46,7 +46,7 @@
 
         <condition field="${sip_redirect_contact_2}" expression="^<(.+)\>(.+)$">
             <action application="set" data="process_cdr=true"/>
-            <action application="export" data="coreuuid=${Core-UUID}"/>
+            <action application="export" data="billuuid=${billuuid}"/>
             <action application="export" data="touser=${sip_redirect_contact_host_2}"/>
             <action application="bridge" data="{accountcode=jerasoftterm,call-origin=outbound,sip_invite_from_uri=sip:${effective_caller_id_number}@${sip_network_ip}}sofia/external/$1" />
         </condition>
@@ -59,7 +59,7 @@
 
         <condition field="${sip_redirect_contact_3}" expression="^<(.+)\>(.+)$">
             <action application="set" data="process_cdr=true"/>
-            <action application="export" data="coreuuid=${Core-UUID}"/>
+            <action application="export" data="billuuid=${billuuid}"/>
             <action application="export" data="touser=${sip_redirect_contact_host_3}"/>
             <action application="bridge" data="{accountcode=jerasoftterm,call-origin=outbound,sip_invite_from_uri=sip:${effective_caller_id_number}@${sip_network_ip}}sofia/external/$1" />
         </condition>
