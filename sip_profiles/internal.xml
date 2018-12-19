@@ -215,7 +215,7 @@
     <!--<param name="odbc-dsn" value="dsn:user:pass"/>-->
 
     <!--Uncomment to set all inbound calls to no media mode-->
-    <param name="inbound-bypass-media" value="true"/>
+    <!--<param name="inbound-bypass-media" value="true"/>-->
 
     <!--Uncomment to set all inbound calls to proxy media mode-->
     <!--<param name="inbound-proxy-media" value="true"/>-->
