@@ -13,7 +13,7 @@
    <param name="radius_timeout" value="3"/>
    <param name="radius_retries" value="2"/>
    <param name="radius_deadtime" value="0"/>
-   <param name="bindaddr" value="*"/>
+   <param name="bindaddr" value="$${external_ip}"/
  </client>
  
  <vsas>
