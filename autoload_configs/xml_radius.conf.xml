@@ -7,6 +7,7 @@
       <param name="radius_deadtime" value="0"/>
       <param name="dictionary" value="/usr/local/freeswitch/conf/dictionaries/dictionary"/>
       <param name="seqfile" value="/var/run/freeswitch/radius.seq"/>
+      <param name="bindaddr" value="$${external_ip}"/>
     </connection>
     <fields>
       <param vendor="Cisco" name="Cisco-AVPair" variable="ip" format="src-gw-ip=%s"/>
@@ -36,6 +37,7 @@
       <param name="radius_deadtime" value="0"/>
       <param name="dictionary" value="/usr/local/freeswitch/conf/dictionaries/dictionary"/>
       <param name="seqfile" value="/var/run/freeswitch/radius.seq"/>
+      <param name="bindaddr" value="$${external_ip}"/>
     </connection>
     <fields>
       <param vendor="Cisco" name="Cisco-AVPair" variable="ip" format="request-type=user"/>
@@ -62,6 +64,7 @@
       <param name="radius_deadtime" value="0"/>
       <param name="dictionary" value="/usr/local/freeswitch/conf/dictionaries/dictionary"/>
       <param name="seqfile" value="/var/run/freeswitch/radius.seq"/>
+      <param name="bindaddr" value="$${external_ip}"/>
     </connection>
     <fields>
       <param vendor="Cisco" name="h323-conf-id" variable_secondary="uuid" variable="originating_leg_uuid" format="%s"/>
@@ -82,6 +85,7 @@
       <param name="radius_deadtime" value="0"/>
       <param name="dictionary" value="/usr/local/freeswitch/conf/dictionaries/dictionary"/>
       <param name="seqfile" value="/var/run/freeswitch/radius.seq"/>
+      <param name="bindaddr" value="$${external_ip}"/>
     </connection>
     <fields>
       <param vendor="Cisco" name="h323-call-origin" variable="h323-call-origin" default="answer" format="%s"/>
@@ -116,6 +120,7 @@
       <param name="radius_deadtime" value="0"/>
       <param name="dictionary" value="/usr/local/freeswitch/conf/dictionaries/dictionary"/>
       <param name="seqfile" value="/var/run/freeswitch/radius.seq"/>
+      <param name="bindaddr" value="$${external_ip}"/>
     </connection>
     <fields>
       <param vendor="Cisco" name="h323-call-origin" variable="h323-call-origin" default="answer" format="%s"/>
